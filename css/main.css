@@ -2358,7 +2358,8 @@ header.header {
   }
 }
 .site-brand-container {
-  background: var(--theme-color);
+  background: url("/images/background3.png");
+  background-size: cover;
 }
 @media (max-width: 991px) {
   .site-nav-on .site-brand-container {
@@ -2625,7 +2626,7 @@ header.header {
   }
 }
 body {
-  background-image: url("/images/backboard.jpg");
+  background-image: url("/images/background4.png");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: 100% 100%;
