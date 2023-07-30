@@ -22,23 +22,28 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.17.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta property="og:type" content="website">
-<meta property="og:title" content="tboiw&#39;s Blog">
-<meta property="og:url" content="http://example.com/index.html">
+    <meta name="description" content="B-Longest Divisors Interval  题意 给定n，求[l,r]的最大长度，使得[l,r]中的任意x都是n的因数  思路 假设一个序列为{1,2,...,n−1,n}\{1,2,...,n-1,n\}{1,2,...,n−1,n},现将其均分为k&#x3D;k&#x3D;k&#x3D;{1,2,…n}$段，若能成功均分，即n%k&#x3D;&#x3D;0时，第一段结尾数字能够被n整除。只有1~k段全可成功均分，结尾数字才可连">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Codeforces Round 889(B)">
+<meta property="og:url" content="http://example.com/2023/07/30/cfr889_B/index.html">
 <meta property="og:site_name" content="tboiw&#39;s Blog">
+<meta property="og:description" content="B-Longest Divisors Interval  题意 给定n，求[l,r]的最大长度，使得[l,r]中的任意x都是n的因数  思路 假设一个序列为{1,2,...,n−1,n}\{1,2,...,n-1,n\}{1,2,...,n−1,n},现将其均分为k&#x3D;k&#x3D;k&#x3D;{1,2,…n}$段，若能成功均分，即n%k&#x3D;&#x3D;0时，第一段结尾数字能够被n整除。只有1~k段全可成功均分，结尾数字才可连">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-07-30T05:24:43.000Z">
+<meta property="article:modified_time" content="2023-07-30T06:22:24.350Z">
 <meta property="article:author" content="tboiw">
+<meta property="article:tag" content="-codeforces -结论题">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://example.com/">
+<link rel="canonical" href="http://example.com/2023/07/30/cfr889_B/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":true,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2023/07/30/cfr889_B/","path":"2023/07/30/cfr889_B/","title":"Codeforces Round 889(B)"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>tboiw's Blog</title>
+<title>Codeforces Round 889(B) | tboiw's Blog</title>
   
 
 
@@ -75,7 +80,7 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <h1 class="site-title">tboiw's Blog</h1>
+      <p class="site-title">tboiw's Blog</p>
       <i class="logo-line"></i>
     </a>
   </div>
@@ -101,7 +106,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -114,6 +119,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#b-longest-divisors-interval"><span class="nav-number">1.</span> <span class="nav-text"> B-Longest Divisors Interval</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%98%E6%84%8F"><span class="nav-number">1.1.</span> <span class="nav-text"> 题意</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF"><span class="nav-number">1.2.</span> <span class="nav-text"> 思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81"><span class="nav-number">1.3.</span> <span class="nav-text"> 代码</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -159,16 +165,17 @@
 
     </div>
 
-    <div class="main-inner index posts-expand">
+    <div class="main-inner post posts-expand">
 
-    
+
+  
 
 
 <div class="post-block">
   
   
 
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2023/07/30/cfr889_B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -182,13 +189,13 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | tboiw's Blog">
+      <meta itemprop="name" content="Codeforces Round 889(B) | tboiw's Blog">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/07/30/cfr889_B/" class="post-title-link" itemprop="url">Codeforces Round 889(B)</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          Codeforces Round 889(B)
+        </h1>
 
         <div class="post-meta-container">
           <div class="post-meta">
@@ -220,21 +227,15 @@
     
     
     
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="b-longest-divisors-interval"><a class="markdownIt-Anchor" href="#b-longest-divisors-interval"></a> B-Longest Divisors Interval</h1>
+    <div class="post-body" itemprop="articleBody"><h1 id="b-longest-divisors-interval"><a class="markdownIt-Anchor" href="#b-longest-divisors-interval"></a> B-Longest Divisors Interval</h1>
 <h2 id="题意"><a class="markdownIt-Anchor" href="#题意"></a> 题意</h2>
 <p>给定n，求[l,r]的最大长度，使得[l,r]中的任意x都是n的因数</p>
 <h2 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h2>
 <p>假设一个序列为<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">{</mo><mn>1</mn><mo separator="true">,</mo><mn>2</mn><mo separator="true">,</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mo separator="true">,</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo separator="true">,</mo><mi>n</mi><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\{1,2,...,n-1,n\}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">2</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">.</span><span class="mord">.</span><span class="mord">.</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal">n</span><span class="mclose">}</span></span></span></span>,现将其均分为<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi><mo>=</mo></mrow><annotation encoding="application/x-tex">k=</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span></span></span></span>{1,2,…n}$段，若能成功均分，即n%k==0时，第一段结尾数字能够被n整除。只有1~k段全可成功均分，结尾数字才可连续，故只要判断1~k均能被k整除的最大k值即可。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2023/07/30/cfr889_B/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
+<span id="more"></span>
+<h2 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h2>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">long</span> ll;</span><br><span class="line"><span class="keyword">typedef</span> vector&lt;<span class="type">int</span>&gt; vi;</span><br><span class="line"><span class="keyword">typedef</span> vector&lt;ll&gt; vl;</span><br><span class="line"><span class="keyword">typedef</span> pair&lt;<span class="type">int</span>,<span class="type">int</span>&gt; pii;</span><br><span class="line"><span class="keyword">typedef</span> pair&lt;ll,ll&gt; pll;</span><br><span class="line"><span class="type">const</span> ll INF=<span class="number">1e9</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	ll n;cin&gt;&gt;n;</span><br><span class="line">	ll cnt=<span class="number">2</span>;</span><br><span class="line">	<span class="keyword">while</span>(n%cnt==<span class="number">0</span>) cnt++;</span><br><span class="line">	cout&lt;&lt;cnt<span class="number">-1</span>&lt;&lt;endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">int</span> t;cin&gt;&gt;t;</span><br><span class="line">	<span class="keyword">while</span>(t--)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">solve</span>();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
     </div>
 
     
@@ -242,92 +243,25 @@
     
 
     <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
+          <div class="post-tags">
+              <a href="/tags/codeforces-%E7%BB%93%E8%AE%BA%E9%A2%98/" rel="tag"><i class="fa fa-tag"></i> -codeforces -结论题</a>
+          </div>
 
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/07/29/2023%E6%9D%AD%E7%94%B5%E5%A4%9A%E6%A0%A13-1011/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/dog.jpg">
-      <meta itemprop="name" content="tboiw">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="tboiw's Blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | tboiw's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/07/29/2023%E6%9D%AD%E7%94%B5%E5%A4%9A%E6%A0%A13-1011/" class="post-title-link" itemprop="url">2023杭电多校3_1011</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2023-07-29 14:37:44 / 修改时间：16:42:19" itemprop="dateCreated datePublished" datetime="2023-07-29T14:37:44+08:00">2023-07-29</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="题意">题意</h1>
-<p>给定n*n的图片，问是否能放大至<span class="math inline">\({n \ast
-z}\over{100}\)</span><span class="math inline">\(\ast\)</span><span
-class="math inline">\({n\ast
-z}\over{100}\)</span>的大小，使得每一个像素颜色能被唯一确定</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2023/07/29/2023%E6%9D%AD%E7%94%B5%E5%A4%9A%E6%A0%A13-1011/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
         
-      
-    </div>
 
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/07/29/2023%E6%9D%AD%E7%94%B5%E5%A4%9A%E6%A0%A13-1011/" rel="prev" title="2023杭电多校3_1011">
+                  <i class="fa fa-angle-left"></i> 2023杭电多校3_1011
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
     </footer>
   </article>
 </div>
+
 
 
 
