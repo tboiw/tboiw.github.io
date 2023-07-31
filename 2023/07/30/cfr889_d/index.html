@@ -22,29 +22,30 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.17.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="B-Longest Divisors Interval 题意 给定n，求[l,r]的最大长度，使得[l,r]中的任意x都是n的因数">
+    <meta name="description" content="D-Earn or Unlock 题意 卡牌游戏，有一堆牌，每张牌都有一个价值\(v[i]\)，开始除了牌顶第一张牌外所有牌都锁住了。每次对牌堆顶未被锁住的牌可以进行两种操作中的一种，直到无法继续操作： 1.获得该张牌的价值并拿走。 2.解锁后\(v[i]\)张牌，不获得价值并拿走。 求最大价值。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Codeforces Round 889(B)">
-<meta property="og:url" content="http://example.com/2023/07/30/cfr889_B/index.html">
+<meta property="og:title" content="Codeforces Round 889(D)">
+<meta property="og:url" content="http://example.com/2023/07/30/cfr889_d/index.html">
 <meta property="og:site_name" content="tboiw&#39;s Blog">
-<meta property="og:description" content="B-Longest Divisors Interval 题意 给定n，求[l,r]的最大长度，使得[l,r]中的任意x都是n的因数">
+<meta property="og:description" content="D-Earn or Unlock 题意 卡牌游戏，有一堆牌，每张牌都有一个价值\(v[i]\)，开始除了牌顶第一张牌外所有牌都锁住了。每次对牌堆顶未被锁住的牌可以进行两种操作中的一种，直到无法继续操作： 1.获得该张牌的价值并拿走。 2.解锁后\(v[i]\)张牌，不获得价值并拿走。 求最大价值。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-07-30T05:24:43.000Z">
-<meta property="article:modified_time" content="2023-07-30T11:16:22.944Z">
+<meta property="article:published_time" content="2023-07-30T08:55:52.000Z">
+<meta property="article:modified_time" content="2023-07-31T04:46:14.073Z">
 <meta property="article:author" content="tboiw">
 <meta property="article:tag" content="codeforces">
-<meta property="article:tag" content="结论题">
+<meta property="article:tag" content="dp">
+<meta property="article:tag" content="状压dp">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://example.com/2023/07/30/cfr889_B/">
+<link rel="canonical" href="http://example.com/2023/07/30/cfr889_d/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2023/07/30/cfr889_B/","path":"2023/07/30/cfr889_B/","title":"Codeforces Round 889(B)"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2023/07/30/cfr889_d/","path":"2023/07/30/cfr889_d/","title":"Codeforces Round 889(D)"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>Codeforces Round 889(B) | tboiw's Blog</title>
+<title>Codeforces Round 889(D) | tboiw's Blog</title>
   
 
 
@@ -121,7 +122,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#b-longest-divisors-interval"><span class="nav-number">1.</span> <span class="nav-text">B-Longest Divisors Interval</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%98%E6%84%8F"><span class="nav-number">1.1.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF"><span class="nav-number">1.2.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81"><span class="nav-number">1.3.</span> <span class="nav-text">代码</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#d-earn-or-unlock"><span class="nav-number">1.</span> <span class="nav-text">D-Earn or Unlock</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%98%E6%84%8F"><span class="nav-number">1.1.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E6%9E%90"><span class="nav-number">1.2.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81"><span class="nav-number">1.3.</span> <span class="nav-text">代码</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -178,7 +179,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/07/30/cfr889_B/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/07/30/cfr889_d/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/tx.png">
@@ -191,12 +192,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="Codeforces Round 889(B) | tboiw's Blog">
+      <meta itemprop="name" content="Codeforces Round 889(D) | tboiw's Blog">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Codeforces Round 889(B)
+          Codeforces Round 889(D)
         </h1>
 
         <div class="post-meta-container">
@@ -206,9 +207,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2023-07-30 13:24:43 / 修改时间：19:16:22" itemprop="dateCreated datePublished" datetime="2023-07-30T13:24:43+08:00">2023-07-30</time>
+      <time title="创建时间：2023-07-30 16:55:52" itemprop="dateCreated datePublished" datetime="2023-07-30T16:55:52+08:00">2023-07-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-07-31 12:46:14" itemprop="dateModified" datetime="2023-07-31T12:46:14+08:00">2023-07-31</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -233,16 +240,23 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h1 id="b-longest-divisors-interval">B-Longest Divisors Interval</h1>
+    <div class="post-body" itemprop="articleBody"><h1 id="d-earn-or-unlock">D-Earn or Unlock</h1>
 <h2 id="题意">题意</h2>
-<p>给定n，求[l,r]的最大长度，使得[l,r]中的任意x都是n的因数</p>
+<p>卡牌游戏，有一堆牌，每张牌都有一个价值<span
+class="math inline">\(v[i]\)</span>，开始除了牌顶第一张牌外所有牌都锁住了。每次对牌堆顶未被锁住的牌可以进行两种操作中的一种，直到无法继续操作：</p>
+<p>1.获得该张牌的价值并拿走。</p>
+<p>2.解锁后<span
+class="math inline">\(v[i]\)</span>张牌，不获得价值并拿走。</p>
+<p>求最大价值。</p>
 <span id="more"></span>
-<h2 id="思路">思路</h2>
-<p>假设一个序列为<span
-class="math inline">\(\{1,2,...,n-1,n\}\)</span>,现将其均分为<span
-class="math inline">\(k=\)</span>{1,2,...n}段，若能成功均分，即n%k==0时，第一段结尾数字能够被n整除。只有1~k段全可成功均分，结尾数字才可连续，故只要判断1~k均能被k整除的最大k值即可。</p>
+<h2 id="分析">分析</h2>
+<p>如果一张牌是最后操作的一张牌，那么该牌一定可达，前面无法获得的价值一定为<span
+class="math inline">\((i-1)\)</span>,因此所获得的最终价值为<span
+class="math inline">\(sum[i]-(i-1)\)</span>。但最后的“溢出”（如“3，3，2”）怎么办呢？我们可以考虑将数组开到2*n（由题意<span
+class="math inline">\(0\leq a[i]\leq
+n\)</span>）,视作在原牌堆后再放n张价值为0的牌即可。利用bitset记录恰好可达的位置。</p>
 <h2 id="代码">代码</h2>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">long</span> ll;</span><br><span class="line"><span class="keyword">typedef</span> vector&lt;<span class="type">int</span>&gt; vi;</span><br><span class="line"><span class="keyword">typedef</span> vector&lt;ll&gt; vl;</span><br><span class="line"><span class="keyword">typedef</span> pair&lt;<span class="type">int</span>,<span class="type">int</span>&gt; pii;</span><br><span class="line"><span class="keyword">typedef</span> pair&lt;ll,ll&gt; pll;</span><br><span class="line"><span class="type">const</span> ll INF=<span class="number">1e9</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	ll n;cin&gt;&gt;n;</span><br><span class="line">	ll cnt=<span class="number">2</span>;</span><br><span class="line">	<span class="keyword">while</span>(n%cnt==<span class="number">0</span>) cnt++;</span><br><span class="line">	cout&lt;&lt;cnt<span class="number">-1</span>&lt;&lt;endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">int</span> t;cin&gt;&gt;t;</span><br><span class="line">	<span class="keyword">while</span>(t--)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">solve</span>();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">long</span> ll;</span><br><span class="line"><span class="keyword">typedef</span> vector&lt;<span class="type">int</span>&gt; vi;</span><br><span class="line"><span class="keyword">typedef</span> vector&lt;ll&gt; vl;</span><br><span class="line"><span class="keyword">typedef</span> pair&lt;<span class="type">int</span>,<span class="type">int</span>&gt; pii;</span><br><span class="line"><span class="keyword">typedef</span> pair&lt;ll,ll&gt; pll;</span><br><span class="line"><span class="type">const</span> ll INF=<span class="number">1e9</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> inf=<span class="number">0x3f3f3f3f</span>;</span><br><span class="line"><span class="type">const</span> ll N=<span class="number">1e5</span>+<span class="number">5</span>;</span><br><span class="line"></span><br><span class="line">ll v[N];</span><br><span class="line">ll ans=<span class="number">0</span>;</span><br><span class="line">ll sum[N];</span><br><span class="line">bitset&lt;2*N+2&gt; f;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	ll n;cin&gt;&gt;n;</span><br><span class="line">	f[<span class="number">1</span>]=<span class="number">1</span>;sum[<span class="number">0</span>]=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(ll i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		cin&gt;&gt;v[i];</span><br><span class="line">		sum[i]=sum[i<span class="number">-1</span>]+v[i];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(ll i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>(sum[i]&lt;i) <span class="keyword">break</span>;</span><br><span class="line">		f|=(f&lt;&lt;v[i]);</span><br><span class="line">		<span class="keyword">if</span>(f[i]) </span><br><span class="line">		&#123;</span><br><span class="line">			ans=<span class="built_in">max</span>(ans,sum[i]-(i<span class="number">-1</span>));</span><br><span class="line">			f[i]=<span class="number">0</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(ll i=n+<span class="number">1</span>;i&lt;=n*<span class="number">2</span>;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>(f[i]) </span><br><span class="line">		&#123;</span><br><span class="line">			ans=<span class="built_in">max</span>(ans,sum[n]-(i<span class="number">-1</span>));</span><br><span class="line">			f[i]=<span class="number">0</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	cout&lt;&lt;ans&lt;&lt;endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">solve</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
     </div>
 
@@ -253,20 +267,21 @@ class="math inline">\(k=\)</span>{1,2,...n}段，若能成功均分，即n%k==0�
     <footer class="post-footer">
           <div class="post-tags">
               <a href="/tags/codeforces/" rel="tag"><i class="fa fa-tag"></i> codeforces</a>
-              <a href="/tags/%E7%BB%93%E8%AE%BA%E9%A2%98/" rel="tag"><i class="fa fa-tag"></i> 结论题</a>
+              <a href="/tags/dp/" rel="tag"><i class="fa fa-tag"></i> dp</a>
+              <a href="/tags/%E7%8A%B6%E5%8E%8Bdp/" rel="tag"><i class="fa fa-tag"></i> 状压dp</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2023/07/29/2023%E6%9D%AD%E7%94%B5%E5%A4%9A%E6%A0%A13-1011/" rel="prev" title="2023杭电多校3(1011)">
-                  <i class="fa fa-angle-left"></i> 2023杭电多校3(1011)
+                <a href="/2023/07/30/cfr889_B/" rel="prev" title="Codeforces Round 889(B)">
+                  <i class="fa fa-angle-left"></i> Codeforces Round 889(B)
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2023/07/30/cfr889_d/" rel="next" title="Codeforces Round 889(D)">
-                  Codeforces Round 889(D) <i class="fa fa-angle-right"></i>
+                <a href="/2023/07/30/cfr889_c1/" rel="next" title="Codeforces Round 889(C)">
+                  Codeforces Round 889(C) <i class="fa fa-angle-right"></i>
                 </a>
             </div>
           </div>
