@@ -22,23 +22,32 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.17.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta property="og:type" content="website">
-<meta property="og:title" content="tboiw&#39;s Blog">
-<meta property="og:url" content="http://example.com/tags/%E7%BB%93%E8%AE%BA%E9%A2%98/index.html">
+    <meta name="description" content="1010-Kong Ming Qi 题意 给定\((n+2)\ast(m+2)\)大小的棋盘，开始中间\(n\ast m\)摆满棋子，外面一圈没有棋。每次可以进行如下移动：   figure  求最终最少剩几颗棋子。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2023杭电多校4(1010)">
+<meta property="og:url" content="http://example.com/2023/08/01/2023%E6%9D%AD%E7%94%B5%E5%A4%9A%E6%A0%A14-1010/index.html">
 <meta property="og:site_name" content="tboiw&#39;s Blog">
+<meta property="og:description" content="1010-Kong Ming Qi 题意 给定\((n+2)\ast(m+2)\)大小的棋盘，开始中间\(n\ast m\)摆满棋子，外面一圈没有棋。每次可以进行如下移动：   figure  求最终最少剩几颗棋子。">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://acm.hdu.edu.cn/data/images/C1111-1011-1.jpg">
+<meta property="article:published_time" content="2023-08-01T08:55:52.000Z">
+<meta property="article:modified_time" content="2023-08-01T02:47:45.007Z">
 <meta property="article:author" content="tboiw">
+<meta property="article:tag" content="结论题">
+<meta property="article:tag" content="杭电多校4">
+<meta property="article:tag" content="手玩">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://acm.hdu.edu.cn/data/images/C1111-1011-1.jpg">
 
 
-<link rel="canonical" href="http://example.com/tags/%E7%BB%93%E8%AE%BA%E9%A2%98/">
+<link rel="canonical" href="http://example.com/2023/08/01/2023%E6%9D%AD%E7%94%B5%E5%A4%9A%E6%A0%A14-1010/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"tags/结论题/index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2023/08/01/2023%E6%9D%AD%E7%94%B5%E5%A4%9A%E6%A0%A14-1010/","path":"2023/08/01/2023杭电多校4-1010/","title":"2023杭电多校4(1010)"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>标签: 结论题 | tboiw's Blog</title>
+<title>2023杭电多校4(1010) | tboiw's Blog</title>
   
 
 
@@ -102,7 +111,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -115,6 +124,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#kong-ming-qi"><span class="nav-number">1.</span> <span class="nav-text">1010-Kong Ming Qi</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%98%E6%84%8F"><span class="nav-number">1.1.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E6%9E%90"><span class="nav-number">1.2.</span> <span class="nav-text">分析</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -160,70 +170,119 @@
 
     </div>
 
-    <div class="main-inner tag posts-collapse">
+    <div class="main-inner post posts-expand">
 
 
   
+
+
+<div class="post-block">
   
   
-  <div class="post-block">
-    <div class="post-content">
-      <div class="collection-title">
-        <h1 class="collection-header">结论题
-          <small>标签</small>
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/08/01/2023%E6%9D%AD%E7%94%B5%E5%A4%9A%E6%A0%A14-1010/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/tx.png">
+      <meta itemprop="name" content="tboiw">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="tboiw's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2023杭电多校4(1010) | tboiw's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2023杭电多校4(1010)
         </h1>
-      </div>
 
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
       
-    <div class="collection-year">
-      <span class="collection-header">2023</span>
+
+      <time title="创建时间：2023-08-01 16:55:52 / 修改时间：10:47:45" itemprop="dateCreated datePublished" datetime="2023-08-01T16:55:52+08:00">2023-08-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/2023%E6%9D%AD%E7%94%B5%E5%A4%9A%E6%A0%A1/" itemprop="url" rel="index"><span itemprop="name">2023杭电多校</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/2023%E6%9D%AD%E7%94%B5%E5%A4%9A%E6%A0%A1/%E6%9D%AD%E7%94%B5%E5%A4%9A%E6%A0%A14/" itemprop="url" rel="index"><span itemprop="name">杭电多校4</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="kong-ming-qi">1010-Kong Ming Qi</h1>
+<h2 id="题意">题意</h2>
+<p>给定<span
+class="math inline">\((n+2)\ast(m+2)\)</span>大小的棋盘，开始中间<span
+class="math inline">\(n\ast
+m\)</span>摆满棋子，外面一圈没有棋。每次可以进行如下移动：</p>
+<figure>
+<img data-src="https://acm.hdu.edu.cn/data/images/C1111-1011-1.jpg"
+alt="figure" />
+<figcaption aria-hidden="true">figure</figcaption>
+</figure>
+<p>求最终最少剩几颗棋子。</p>
+<span id="more"></span>
+<h2 id="分析">分析</h2>
+
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2023-08-01T16:55:52+08:00"
-              content="2023-08-01">
-          08-01
-        </time>
-      </div>
+    
+    
+    
 
-      <div class="post-title">
-        <a class="post-title-link" href="/2023/08/01/2023%E6%9D%AD%E7%94%B5%E5%A4%9A%E6%A0%A14-1010/" itemprop="url">
-          <span itemprop="name">2023杭电多校4(1010)</span>
-        </a>
-      </div>
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%BB%93%E8%AE%BA%E9%A2%98/" rel="tag"><i class="fa fa-tag"></i> 结论题</a>
+              <a href="/tags/%E6%9D%AD%E7%94%B5%E5%A4%9A%E6%A0%A14/" rel="tag"><i class="fa fa-tag"></i> 杭电多校4</a>
+              <a href="/tags/%E6%89%8B%E7%8E%A9/" rel="tag"><i class="fa fa-tag"></i> 手玩</a>
+          </div>
 
-      
-    </header>
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/07/31/cfr889_d/" rel="prev" title="Codeforces Round 889(D)">
+                  <i class="fa fa-angle-left"></i> Codeforces Round 889(D)
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
   </article>
+</div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2023-07-30T13:24:43+08:00"
-              content="2023-07-30">
-          07-30
-        </time>
-      </div>
 
-      <div class="post-title">
-        <a class="post-title-link" href="/2023/07/30/cfr889_B/" itemprop="url">
-          <span itemprop="name">Codeforces Round 889(B)</span>
-        </a>
-      </div>
 
-      
-    </header>
-  </article>
 
-    </div>
-  </div>
-  
-  
-  
+
 
 </div>
   </main>
@@ -272,7 +331,7 @@
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"all","per_page":true,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"all","per_page":true,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
 <script src="/js/third-party/math/mathjax.js"></script>
 
 
