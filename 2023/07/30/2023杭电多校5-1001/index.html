@@ -22,23 +22,29 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.17.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta property="og:type" content="website">
-<meta property="og:title" content="tboiw&#39;s Blog">
-<meta property="og:url" content="http://example.com/index.html">
+    <meta name="description" content="1001.Typhoon 题意 给定台风路径各点的坐标，每次询问给定庇护所的点坐标，求台风半径多少时可以覆盖该庇护所。 分析 只要求出点到每条线段距离的最小值即可。 平面上一点到平面上的线段的距离有两种情况：   image-20230802161724460  对于第一种情况，距离为\(min(|AP|,|BP|)\),第二种情况则为E到直线CD的距离 对于给定坐标\(P(">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2023杭电多校5（1001）">
+<meta property="og:url" content="http://example.com/2023/07/30/2023%E6%9D%AD%E7%94%B5%E5%A4%9A%E6%A0%A15-1001/index.html">
 <meta property="og:site_name" content="tboiw&#39;s Blog">
+<meta property="og:description" content="1001.Typhoon 题意 给定台风路径各点的坐标，每次询问给定庇护所的点坐标，求台风半径多少时可以覆盖该庇护所。 分析 只要求出点到每条线段距离的最小值即可。 平面上一点到平面上的线段的距离有两种情况：   image-20230802161724460  对于第一种情况，距离为\(min(|AP|,|BP|)\),第二种情况则为E到直线CD的距离 对于给定坐标\(P(">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-07-30T08:55:52.000Z">
+<meta property="article:modified_time" content="2023-08-02T08:36:50.281Z">
 <meta property="article:author" content="tboiw">
+<meta property="article:tag" content="杭电多校5">
+<meta property="article:tag" content="计算几何">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://example.com/">
+<link rel="canonical" href="http://example.com/2023/07/30/2023%E6%9D%AD%E7%94%B5%E5%A4%9A%E6%A0%A15-1001/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":true,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2023/07/30/2023%E6%9D%AD%E7%94%B5%E5%A4%9A%E6%A0%A15-1001/","path":"2023/07/30/2023杭电多校5-1001/","title":"2023杭电多校5（1001）"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>tboiw's Blog</title>
+<title>2023杭电多校5（1001） | tboiw's Blog</title>
   
 
 
@@ -75,7 +81,7 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <h1 class="site-title">tboiw's Blog</h1>
+      <p class="site-title">tboiw's Blog</p>
       <i class="logo-line"></i>
     </a>
       <p class="site-subtitle" itemprop="description">Welcome to my blog!</p>
@@ -102,7 +108,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -115,6 +121,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#typhoon"><span class="nav-number">1.</span> <span class="nav-text">1001.Typhoon</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%98%E6%84%8F"><span class="nav-number">1.1.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E6%9E%90"><span class="nav-number">1.2.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81"><span class="nav-number">1.3.</span> <span class="nav-text">代码</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -160,316 +167,17 @@
 
     </div>
 
-    <div class="main-inner index posts-expand">
+    <div class="main-inner post posts-expand">
 
-    
+
+  
 
 
 <div class="post-block">
   
   
 
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/08/01/2023%E6%9D%AD%E7%94%B5%E5%A4%9A%E6%A0%A14-1010/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/tx.png">
-      <meta itemprop="name" content="tboiw">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="tboiw's Blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | tboiw's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/08/01/2023%E6%9D%AD%E7%94%B5%E5%A4%9A%E6%A0%A14-1010/" class="post-title-link" itemprop="url">2023杭电多校4(1010)</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-08-01 16:55:52" itemprop="dateCreated datePublished" datetime="2023-08-01T16:55:52+08:00">2023-08-01</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-08-02 12:39:21" itemprop="dateModified" datetime="2023-08-02T12:39:21+08:00">2023-08-02</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/2023%E6%9D%AD%E7%94%B5%E5%A4%9A%E6%A0%A1/" itemprop="url" rel="index"><span itemprop="name">2023杭电多校</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/2023%E6%9D%AD%E7%94%B5%E5%A4%9A%E6%A0%A1/%E6%9D%AD%E7%94%B5%E5%A4%9A%E6%A0%A14/" itemprop="url" rel="index"><span itemprop="name">杭电多校4</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="kong-ming-qi">1010-Kong Ming Qi</h1>
-<h2 id="题意">题意</h2>
-<p>给定<span
-class="math inline">\((n+2)\ast(m+2)\)</span>大小的棋盘，开始中间<span
-class="math inline">\(n\ast
-m\)</span>摆满棋子，外面一圈没有棋。每次可以进行如下移动：</p>
-<p><img data-src="https://acm.hdu.edu.cn/data/images/C1111-1011-1.jpg" /></p>
-<p>求最终最少剩几颗棋子。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2023/08/01/2023%E6%9D%AD%E7%94%B5%E5%A4%9A%E6%A0%A14-1010/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/07/31/cfr889_d/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/tx.png">
-      <meta itemprop="name" content="tboiw">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="tboiw's Blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | tboiw's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/07/31/cfr889_d/" class="post-title-link" itemprop="url">Codeforces Round 889(D)</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2023-07-31 11:55:52 / 修改时间：12:59:13" itemprop="dateCreated datePublished" datetime="2023-07-31T11:55:52+08:00">2023-07-31</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/codeforces/" itemprop="url" rel="index"><span itemprop="name">codeforces</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/codeforces/Codeforces-Round-889/" itemprop="url" rel="index"><span itemprop="name">Codeforces Round 889</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="d-earn-or-unlock">D-Earn or Unlock</h1>
-<h2 id="题意">题意</h2>
-<p>卡牌游戏，有一堆牌，每张牌都有一个价值<span
-class="math inline">\(v[i]\)</span>，开始除了牌顶第一张牌外所有牌都锁住了。每次对牌堆顶未被锁住的牌可以进行两种操作中的一种，直到无法继续操作：</p>
-<p>1.获得该张牌的价值并拿走。</p>
-<p>2.解锁后<span
-class="math inline">\(v[i]\)</span>张牌，不获得价值并拿走。</p>
-<p>求最大价值。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2023/07/31/cfr889_d/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/07/30/cfr889_c1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/tx.png">
-      <meta itemprop="name" content="tboiw">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="tboiw's Blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | tboiw's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/07/30/cfr889_c1/" class="post-title-link" itemprop="url">Codeforces Round 889(C1)</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-07-30 16:55:52" itemprop="dateCreated datePublished" datetime="2023-07-30T16:55:52+08:00">2023-07-30</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-07-31 12:51:37" itemprop="dateModified" datetime="2023-07-31T12:51:37+08:00">2023-07-31</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/codeforces/" itemprop="url" rel="index"><span itemprop="name">codeforces</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/codeforces/Codeforces-Round-889/" itemprop="url" rel="index"><span itemprop="name">Codeforces Round 889</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="c1-dual-easy-version">C1-Dual (Easy Version)</h1>
-<h2 id="题意">题意</h2>
-<p>给定数组a，每次操作可选定任意<span
-class="math inline">\(i,j\)</span>，令<span
-class="math inline">\(a[i]+=a[j]\)</span>,求使得序列非降序的最少操作数及操作过程</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2023/07/30/cfr889_c1/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2023/07/30/2023%E6%9D%AD%E7%94%B5%E5%A4%9A%E6%A0%A15-1001/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -483,13 +191,13 @@ class="math inline">\(a[i]+=a[j]\)</span>,求使得序列非降序的最少操�
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | tboiw's Blog">
+      <meta itemprop="name" content="2023杭电多校5（1001） | tboiw's Blog">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/07/30/2023%E6%9D%AD%E7%94%B5%E5%A4%9A%E6%A0%A15-1001/" class="post-title-link" itemprop="url">2023杭电多校5（1001）</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          2023杭电多校5（1001）
+        </h1>
 
         <div class="post-meta-container">
           <div class="post-meta">
@@ -531,8 +239,7 @@ class="math inline">\(a[i]+=a[j]\)</span>,求使得序列非降序的最少操�
     
     
     
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="typhoon">1001.Typhoon</h1>
+    <div class="post-body" itemprop="articleBody"><h1 id="typhoon">1001.Typhoon</h1>
 <h2 id="题意">题意</h2>
 <p>给定台风路径各点的坐标，每次询问给定庇护所的点坐标，求台风半径多少时可以覆盖该庇护所。</p>
 <h2 id="分析">分析</h2>
@@ -556,7 +263,6 @@ class="math inline">\(|\vec{AP}\times\vec{AB}|\over{|\vec{AB}|}\)</span></p>
 <h2 id="代码">代码</h2>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">long</span> ll;</span><br><span class="line"><span class="keyword">typedef</span> vector&lt;<span class="type">int</span>&gt; vi;</span><br><span class="line"><span class="keyword">typedef</span> vector&lt;ll&gt; vl;</span><br><span class="line"><span class="keyword">typedef</span> pair&lt;<span class="type">int</span>,<span class="type">int</span>&gt; pii;</span><br><span class="line"><span class="keyword">typedef</span> pair&lt;ll,ll&gt; pll;</span><br><span class="line"><span class="type">const</span> ll INF=<span class="number">1e9</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> inf=<span class="number">0x3f3f3f3f</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">int</span> m,n;cin&gt;&gt;m&gt;&gt;n;</span><br><span class="line">	<span class="function">vector&lt;<span class="type">double</span>&gt; <span class="title">x</span><span class="params">(m)</span>,<span class="title">y</span><span class="params">(m)</span>,<span class="title">X</span><span class="params">(n)</span>,<span class="title">Y</span><span class="params">(n)</span>,<span class="title">a</span><span class="params">(m+<span class="number">1</span>)</span>,<span class="title">b</span><span class="params">(m+<span class="number">1</span>)</span>,<span class="title">c</span><span class="params">(m+<span class="number">1</span>)</span>,<span class="title">d</span><span class="params">(m+<span class="number">1</span>)</span></span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;m;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		cin&gt;&gt;x[i]&gt;&gt;y[i];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function">vector&lt;<span class="type">double</span>&gt; <span class="title">sq</span><span class="params">(m+<span class="number">1</span>)</span></span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;m;j++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">//ab</span></span><br><span class="line">		a[j]=(x[j<span class="number">-1</span>]-x[j]);</span><br><span class="line">		b[j]=(y[j<span class="number">-1</span>]-y[j]);</span><br><span class="line">		sq[j]=<span class="built_in">sqrt</span>(a[j]*a[j]+b[j]*b[j]);</span><br><span class="line">		<span class="comment">//ba</span></span><br><span class="line">		c[j]=-a[j];</span><br><span class="line">		d[j]=-b[j];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		cin&gt;&gt;X[i]&gt;&gt;Y[i];</span><br><span class="line">		<span class="type">double</span> ans=INF;</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;m;j++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="type">double</span> apx=(X[i]-x[j]),apy=(Y[i]-y[j]);</span><br><span class="line">			<span class="type">double</span> bpx=(X[i]-x[j<span class="number">-1</span>]),bpy=(Y[i]-y[j<span class="number">-1</span>]);</span><br><span class="line">			<span class="type">double</span> de;</span><br><span class="line">			<span class="keyword">if</span>(a[j]*apx+b[j]*apy&gt;<span class="number">0</span>&amp;&amp;c[j]*bpx+d[j]*bpy&gt;<span class="number">0</span>)</span><br><span class="line">				de=<span class="built_in">abs</span>(apx*b[j]-a[j]*apy)/sq[j];</span><br><span class="line">			<span class="keyword">else</span></span><br><span class="line">				de=<span class="built_in">min</span>(<span class="built_in">sqrt</span>(apx*apx+apy*apy),<span class="built_in">sqrt</span>(bpx*bpx+bpy*bpy));	</span><br><span class="line">			ans=<span class="built_in">min</span>(ans,de);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;%.4lf&quot;</span>,ans);</span><br><span class="line">		cout&lt;&lt;endl;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">// int t;cin&gt;&gt;t;</span></span><br><span class="line">	<span class="comment">// while(t--)</span></span><br><span class="line">	<span class="comment">// &#123;</span></span><br><span class="line">		<span class="built_in">solve</span>();</span><br><span class="line">	<span class="comment">// &#125;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-      
     </div>
 
     
@@ -564,204 +270,29 @@ class="math inline">\(|\vec{AP}\times\vec{AB}|\over{|\vec{AB}|}\)</span></p>
     
 
     <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
+          <div class="post-tags">
+              <a href="/tags/%E6%9D%AD%E7%94%B5%E5%A4%9A%E6%A0%A15/" rel="tag"><i class="fa fa-tag"></i> 杭电多校5</a>
+              <a href="/tags/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/" rel="tag"><i class="fa fa-tag"></i> 计算几何</a>
+          </div>
 
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/07/30/cfr889_B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/tx.png">
-      <meta itemprop="name" content="tboiw">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="tboiw's Blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | tboiw's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/07/30/cfr889_B/" class="post-title-link" itemprop="url">Codeforces Round 889(B)</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2023-07-30 13:24:43 / 修改时间：19:16:22" itemprop="dateCreated datePublished" datetime="2023-07-30T13:24:43+08:00">2023-07-30</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/codeforces/" itemprop="url" rel="index"><span itemprop="name">codeforces</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/codeforces/Codeforces-Round-889/" itemprop="url" rel="index"><span itemprop="name">Codeforces Round 889</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="b-longest-divisors-interval">B-Longest Divisors Interval</h1>
-<h2 id="题意">题意</h2>
-<p>给定n，求[l,r]的最大长度，使得[l,r]中的任意x都是n的因数</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2023/07/30/cfr889_B/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
         
-      
-    </div>
 
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/07/29/2023%E6%9D%AD%E7%94%B5%E5%A4%9A%E6%A0%A13-1011/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/tx.png">
-      <meta itemprop="name" content="tboiw">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="tboiw's Blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | tboiw's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/07/29/2023%E6%9D%AD%E7%94%B5%E5%A4%9A%E6%A0%A13-1011/" class="post-title-link" itemprop="url">2023杭电多校3(1011)</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-07-29 14:37:44" itemprop="dateCreated datePublished" datetime="2023-07-29T14:37:44+08:00">2023-07-29</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-07-30 19:15:12" itemprop="dateModified" datetime="2023-07-30T19:15:12+08:00">2023-07-30</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/2023%E6%9D%AD%E7%94%B5%E5%A4%9A%E6%A0%A1/" itemprop="url" rel="index"><span itemprop="name">2023杭电多校</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/2023%E6%9D%AD%E7%94%B5%E5%A4%9A%E6%A0%A1/%E6%9D%AD%E7%94%B5%E5%A4%9A%E6%A0%A13/" itemprop="url" rel="index"><span itemprop="name">杭电多校3</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="bit-zoom">1011. 8-bit Zoom</h1>
-<h2 id="题意">题意</h2>
-<p>给定n*n的图片，问是否能放大至<span class="math inline">\({n \ast
-z}\over{100}\)</span><span class="math inline">\(\ast\)</span><span
-class="math inline">\({n\ast
-z}\over{100}\)</span>的大小，使得每一个像素颜色能被唯一确定</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2023/07/29/2023%E6%9D%AD%E7%94%B5%E5%A4%9A%E6%A0%A13-1011/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/07/30/cfr889_B/" rel="prev" title="Codeforces Round 889(B)">
+                  <i class="fa fa-angle-left"></i> Codeforces Round 889(B)
+                </a>
             </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
+            <div class="post-nav-item">
+                <a href="/2023/07/30/cfr889_c1/" rel="next" title="Codeforces Round 889(C1)">
+                  Codeforces Round 889(C1) <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
     </footer>
   </article>
 </div>
+
 
 
 
