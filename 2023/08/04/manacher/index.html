@@ -22,28 +22,32 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.17.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="B-Longest Divisors Interval 题意 给定n，求[l,r]的最大长度，使得[l,r]中的任意x都是n的因数">
+    <meta name="description" content="Manacher(马拉车算法) 问题 计算一字符串中以各点为中心的回文子串的最大半径 分析 暴力法遍历各点，时间复杂度\(O(n^2)\) manacher算法优化： 1.字符串两两元素中间及首尾插入&quot;#&quot;，方便奇数长度回文子串的计算与表示  2.暴力遍历过程中，由对称性，后面的各点可由前面的对称点推得或部分推得，情况有2种。  情况1：若\(r[c]\)未超出范围，则\(r[">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Codeforces Round 889(B)">
-<meta property="og:url" content="http://example.com/2023/07/30/cfr889_B/index.html">
+<meta property="og:title" content="Manacher模板">
+<meta property="og:url" content="http://example.com/2023/08/04/manacher/index.html">
 <meta property="og:site_name" content="tboiw&#39;s Blog">
-<meta property="og:description" content="B-Longest Divisors Interval 题意 给定n，求[l,r]的最大长度，使得[l,r]中的任意x都是n的因数">
+<meta property="og:description" content="Manacher(马拉车算法) 问题 计算一字符串中以各点为中心的回文子串的最大半径 分析 暴力法遍历各点，时间复杂度\(O(n^2)\) manacher算法优化： 1.字符串两两元素中间及首尾插入&quot;#&quot;，方便奇数长度回文子串的计算与表示  2.暴力遍历过程中，由对称性，后面的各点可由前面的对称点推得或部分推得，情况有2种。  情况1：若\(r[c]\)未超出范围，则\(r[">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-07-30T05:24:43.000Z">
-<meta property="article:modified_time" content="2023-08-04T01:54:33.807Z">
+<meta property="og:image" content="http://example.com/2023/08/04/images/5.jpg">
+<meta property="og:image" content="http://example.com/2023/08/04/images/6.jpg">
+<meta property="article:published_time" content="2023-08-04T02:55:52.000Z">
+<meta property="article:modified_time" content="2023-08-04T08:35:35.658Z">
 <meta property="article:author" content="tboiw">
-<meta property="article:tag" content="结论题">
+<meta property="article:tag" content="马拉车算法">
+<meta property="article:tag" content="manacher">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2023/08/04/images/5.jpg">
 
 
-<link rel="canonical" href="http://example.com/2023/07/30/cfr889_B/">
+<link rel="canonical" href="http://example.com/2023/08/04/manacher/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2023/07/30/cfr889_B/","path":"2023/07/30/cfr889_B/","title":"Codeforces Round 889(B)"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2023/08/04/manacher/","path":"2023/08/04/manacher/","title":"Manacher模板"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>Codeforces Round 889(B) | tboiw's Blog</title>
+<title>Manacher模板 | tboiw's Blog</title>
   
 
 
@@ -120,7 +124,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#b-longest-divisors-interval"><span class="nav-number">1.</span> <span class="nav-text">B-Longest Divisors Interval</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%98%E6%84%8F"><span class="nav-number">1.1.</span> <span class="nav-text">题意</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF"><span class="nav-number">1.2.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81"><span class="nav-number">1.3.</span> <span class="nav-text">代码</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#manacher%E9%A9%AC%E6%8B%89%E8%BD%A6%E7%AE%97%E6%B3%95"><span class="nav-number">1.</span> <span class="nav-text">Manacher(马拉车算法)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%98"><span class="nav-number">1.1.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E6%9E%90"><span class="nav-number">1.2.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A8%A1%E6%9D%BF%E4%BB%A3%E7%A0%81"><span class="nav-number">1.3.</span> <span class="nav-text">模板代码</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -177,7 +181,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/07/30/cfr889_B/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/08/04/manacher/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/tx.png">
@@ -190,12 +194,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="Codeforces Round 889(B) | tboiw's Blog">
+      <meta itemprop="name" content="Manacher模板 | tboiw's Blog">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Codeforces Round 889(B)
+          Manacher模板
         </h1>
 
         <div class="post-meta-container">
@@ -205,15 +209,9 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
+      
 
-      <time title="创建时间：2023-07-30 13:24:43" itemprop="dateCreated datePublished" datetime="2023-07-30T13:24:43+08:00">2023-07-30</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-08-04 09:54:33" itemprop="dateModified" datetime="2023-08-04T09:54:33+08:00">2023-08-04</time>
+      <time title="创建时间：2023-08-04 10:55:52 / 修改时间：16:35:35" itemprop="dateCreated datePublished" datetime="2023-08-04T10:55:52+08:00">2023-08-04</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -221,11 +219,7 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/codeforces/" itemprop="url" rel="index"><span itemprop="name">codeforces</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/codeforces/Codeforces-Round-889/" itemprop="url" rel="index"><span itemprop="name">Codeforces Round 889</span></a>
+          <a href="/categories/%E6%A8%A1%E6%9D%BF/" itemprop="url" rel="index"><span itemprop="name">模板</span></a>
         </span>
     </span>
 
@@ -238,16 +232,25 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h1 id="b-longest-divisors-interval">B-Longest Divisors Interval</h1>
-<h2 id="题意">题意</h2>
-<p>给定n，求[l,r]的最大长度，使得[l,r]中的任意x都是n的因数</p>
-<span id="more"></span>
-<h2 id="思路">思路</h2>
-<p>假设一个序列为<span
-class="math inline">\(\{1,2,...,n-1,n\}\)</span>,现将其均分为<span
-class="math inline">\(k=\)</span>{1,2,...n}段，若能成功均分，即n%k==0时，第一段结尾数字能够被n整除。只有1~k段全可成功均分，结尾数字才可连续，故只要判断1~k均能被k整除的最大k值即可。</p>
-<h2 id="代码">代码</h2>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">long</span> ll;</span><br><span class="line"><span class="keyword">typedef</span> vector&lt;<span class="type">int</span>&gt; vi;</span><br><span class="line"><span class="keyword">typedef</span> vector&lt;ll&gt; vl;</span><br><span class="line"><span class="keyword">typedef</span> pair&lt;<span class="type">int</span>,<span class="type">int</span>&gt; pii;</span><br><span class="line"><span class="keyword">typedef</span> pair&lt;ll,ll&gt; pll;</span><br><span class="line"><span class="type">const</span> ll INF=<span class="number">1e9</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	ll n;cin&gt;&gt;n;</span><br><span class="line">	ll cnt=<span class="number">2</span>;</span><br><span class="line">	<span class="keyword">while</span>(n%cnt==<span class="number">0</span>) cnt++;</span><br><span class="line">	cout&lt;&lt;cnt<span class="number">-1</span>&lt;&lt;endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">int</span> t;cin&gt;&gt;t;</span><br><span class="line">	<span class="keyword">while</span>(t--)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">solve</span>();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+    <div class="post-body" itemprop="articleBody"><h1 id="manacher马拉车算法">Manacher(马拉车算法)</h1>
+<h2 id="问题">问题</h2>
+<p>计算一字符串中以各点为中心的回文子串的最大半径</p>
+<h2 id="分析">分析</h2>
+<p>暴力法遍历各点，时间复杂度<span
+class="math inline">\(O(n^2)\)</span></p>
+<p>manacher算法优化：</p>
+<p>1.字符串两两元素中间及首尾插入"#"，方便奇数长度回文子串的计算与表示</p>
+<p><img data-src="../images/5.jpg" /></p>
+<p>2.暴力遍历过程中，由对称性，后面的各点可由前面的对称点推得或部分推得，情况有2种。</p>
+<p><img data-src="../images/6.jpg" /></p>
+<p>情况1：若<span class="math inline">\(r[c]\)</span>未超出范围，则<span
+class="math inline">\(r[i]=r[c]\)</span>;</p>
+<p>情况2：若<span
+class="math inline">\(r[c]\)</span>超出范围，则先令<span
+class="math inline">\(r[i]=a+r[a]-i\)</span>，再用暴力法扩展判断。</p>
+<p>时间复杂度<span class="math inline">\(O(n)\)</span></p>
+<h2 id="模板代码">模板代码</h2>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">string <span class="title">Get_new</span><span class="params">(string &amp;str)</span> </span>&#123;</span><br><span class="line">    string temp = <span class="string">&quot;#&quot;</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; str[i]; ++i) &#123;</span><br><span class="line">        (temp += str[i]) += <span class="string">&quot;#&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> temp;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	string s;cin&gt;&gt;s;</span><br><span class="line">	s=<span class="built_in">Get_new</span>(s);</span><br><span class="line">	<span class="type">int</span> n=s.<span class="built_in">length</span>();</span><br><span class="line">	<span class="function">vi <span class="title">r</span><span class="params">(s.length()+<span class="number">1</span>)</span></span>;</span><br><span class="line">	<span class="type">int</span> c=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; s[i]; i++) </span><br><span class="line">	&#123;</span><br><span class="line">        <span class="keyword">if</span> (c + r[c] &gt; i)  r[i] = <span class="built_in">min</span>(r[<span class="number">2</span> * c - i], c + r[c] - i);</span><br><span class="line">        <span class="keyword">while</span> (i - r[i] &gt;= <span class="number">0</span> &amp;&amp; s[i - r[i]] == s[i + r[i]])  r[i]++;</span><br><span class="line">        r[i]--;</span><br><span class="line">        <span class="keyword">if</span> (i + r[i] &gt; c + r[c])  c = i;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
     </div>
 
@@ -257,20 +260,21 @@ class="math inline">\(k=\)</span>{1,2,...n}段，若能成功均分，即n%k==0�
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E7%BB%93%E8%AE%BA%E9%A2%98/" rel="tag"><i class="fa fa-tag"></i> 结论题</a>
+              <a href="/tags/%E9%A9%AC%E6%8B%89%E8%BD%A6%E7%AE%97%E6%B3%95/" rel="tag"><i class="fa fa-tag"></i> 马拉车算法</a>
+              <a href="/tags/manacher/" rel="tag"><i class="fa fa-tag"></i> manacher</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2023/07/29/2023%E6%9D%AD%E7%94%B5%E5%A4%9A%E6%A0%A13-1011/" rel="prev" title="2023杭电多校3(1011)">
-                  <i class="fa fa-angle-left"></i> 2023杭电多校3(1011)
+                <a href="/2023/08/03/2023%E6%9D%AD%E7%94%B5%E5%A4%9A%E6%A0%A15-1007/" rel="prev" title="2023杭电多校5(1007)">
+                  <i class="fa fa-angle-left"></i> 2023杭电多校5(1007)
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2023/07/30/cfr889_c1/" rel="next" title="Codeforces Round 889(C1)">
-                  Codeforces Round 889(C1) <i class="fa fa-angle-right"></i>
+                <a href="/2023/08/04/2023%E6%9D%AD%E7%94%B5%E5%A4%9A%E6%A0%A15-1003/" rel="next" title="2023杭电多校5(1003)">
+                  2023杭电多校5(1003) <i class="fa fa-angle-right"></i>
                 </a>
             </div>
           </div>
